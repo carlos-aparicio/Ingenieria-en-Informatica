@@ -204,7 +204,7 @@ VALUES
     ('Dante', 'Bottini')
 ;
 
--- Insert Data in Player Table
+-- Insert Data into Player Table
 
 INSERT INTO Player (name, last_name, age)
 VALUES
@@ -284,7 +284,7 @@ VALUES
     ('Yuichi', 'Sugita', 31)
 ;
 
--- Insert Data in Country Table
+-- Insert Data into Country Table
 
 INSERT INTO Country (name)
 VALUES
@@ -500,7 +500,7 @@ VALUES
     ('Zimbabwe')
 ;
 
--- Insert Data in Round Table
+-- Insert Data into Round Table
 
 INSERT INTO Round (name, prize_winner, prize_loser)
 VALUES 
@@ -519,7 +519,7 @@ VALUES
     ('First Doubles', 17000, 17000)
 ;
 
--- Insert Data in Category Table
+-- Insert Data into Category Table
 
 INSERT INTO Category (name)
 VALUES 
@@ -527,7 +527,7 @@ VALUES
     ('Doubles')
 ;
 
--- Insert Data in Referee Table
+-- Insert Data into Referee Table
 
 INSERT INTO Referee (name, last_name)
 VALUES
@@ -565,3 +565,106 @@ VALUES
     ('Paula', 'Vieira')
 ;
 
+-- Insert Data into City Table
+
+INSERT INTO City (name, id_country)
+VALUES 
+    ('Melbourne', 10), 
+    ('Paris', 64),
+    ('London', 58),
+    ('New York', 198)
+;
+
+-- Insert Data into Country_Players Table
+
+INSERT INTO Country_Players (id_player, id_country)
+VALUES 
+    (1, 64),
+    (2, 139),
+    (3, 40),
+    (4, 10),
+    (5, 94),
+    (6, 163),
+    (7, 150),
+    (8, 64),
+    (9, 46),
+    (10, 70),
+    (11, 169),
+    (12, 68),
+    (13, 40),
+    (14, 84),
+    (15, 24),
+    (16, 70),
+    (17, 150),
+    (18, 159),
+    (19, 17),
+    (20, 63),
+    (21, 89),
+    (22, 159),
+    (23, 198),
+    (24, 147),
+    (25, 8),
+    (26, 84),
+    (27, 182),
+    (28, 23),
+    (29, 17),
+    (30, 46),
+    (31, 64),
+    (32, 49),
+    (33, 147),
+    (34, 10),
+    (35, 133),
+    (36, 70),
+    (37, 89),
+    (38, 204),
+    (39, 137),
+    (40, 49),
+    (41, 198),
+    (42, 191),
+    (43, 56),
+    (44, 40),
+    (45, 46),
+    (46, 80),
+    (47, 89),
+    (48, 198),
+    (49, 180),
+    (50, 159),
+    (51, 10),
+    (52, 67),
+    (53, 159),
+    (54, 199),
+    (55, 89),
+    (56, 63),
+    (57, 147),
+    (58, 64),
+    (59, 64),
+    (60, 169),
+    (61, 89),
+    (62, 54),
+    (63, 181),
+    (64, 18),
+    (65, 198),
+    (66, 198),
+    (67, 92),
+    (68, 198),
+    (69, 35),
+    (70, 137),
+    (71, 159),
+    (72, 74),
+    (73, 186),
+    (74, 92)
+;
+
+
+
+-- Queries
+
+SELECT  Player.name AS First, 
+        Player.last_name AS Last, 
+        Country.name AS Country
+FROM    Country_Players
+    LEFT JOIN Country
+            ON Country_Players.id_country = Country.id
+    LEFT  JOIN Player 
+            ON Country_Players.id_Player = Player.id
+;
