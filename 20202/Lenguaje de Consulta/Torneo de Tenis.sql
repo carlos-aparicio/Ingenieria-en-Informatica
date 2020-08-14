@@ -2469,3 +2469,14 @@ FROM    Tournament
     LEFT JOIN Category
             ON Category.id = Tournament.id_category
  ;
+
+SELECT Tournament.id,
+        Tournament.name, 
+        Tournament.year, 
+        City.name
+FROM    Tournament_Cities
+    LEFT JOIN Tournament
+            ON Tournament_Cities.id_tournament = Tournament.id
+    LEFT JOIN City
+            ON Tournament_Cities.id_city = City.id
+;
