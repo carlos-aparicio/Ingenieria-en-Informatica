@@ -2908,6 +2908,7 @@ VALUES
     (29, 72),
     (12, 73)
 ;
+
 -- Queries
 
 SELECT  Player.name AS First, 
