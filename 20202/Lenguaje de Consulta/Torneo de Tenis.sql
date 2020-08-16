@@ -1,3 +1,19 @@
+/*Torneo de Tenis
+
+El sistema debe tener almacenada toda la información de los encuentros que se han desarrollado desde que 
+existe el torneo, así como las siguientes características de estos.
+Descripción:
+
+El Grand Slam se compone de cuatro torneos anuales que se celebran en Gran Bretaña, Estados Unidos, Francia
+ y Australia. En cada país se pueden desarrollar en distintos lugares (p. ej., en EE. UU. Puede 
+desarrollarse en Forest Hill o en Flashing Meadows). Cada partido tiene asociado un premio de consolación 
+para el perdedor que dependerá de la fase en que se encuentre el torneo (p. ej., el perdedor de octavos de 
+final puede ganar $500.000). El ganador de la final recibirá el premio correspondiente al torneo.
+Cada torneo tiene cinco modalidades: Individual masculino, individual femenino, dobles masculino, dobles 
+femenino y dobles mixtos. También hay que tener en cuenta la nacionalidad de un jugador, de forma que este 
+puede o tener una o varias nacionalidades.*/
+
+
 -- Create database
 
 CREATE DATABASE TorneoTenis;
@@ -2915,26 +2931,25 @@ VALUES
 ;
 
 
-/* Activities:
-1. Mostrar el año de un torneo, composición y resultado de los partidos.
-2. Mostrar la lista de árbitros que participaron en el torneo.
-3. Mostrar el dinero total recibido por un jugador a lo largo del torneo por concepto de
-premios.
-4. Mostrar la lista de entrenadores que han entrenado a un jugador a lo largo del torneo y
-fechas en las que lo hizo.
-5. Mostrar el nombre del ganador de un torneo específico.
-6. Mostrar todos los datos correspondientes a un torneo como: lugares de celebración,
-jugadores puestos ocupados fechas de juegos.
-
-Nota: para que la actividad sea validad se debe mostrar la base de datos creada y las consultas
-correspondientes (recuerden consultas multi-tablas), todo debe tener las instrucciones
-correspondientes en un .sql con pantallazos de los resultados obtenidos.
-*/
+-- Activities:
+-- 1. Mostrar el año de un torneo, composición y resultado de los partidos.
 
 
+-- 2. Mostrar la lista de árbitros que participaron en el torneo.
 
 
+-- 3. Mostrar el dinero total recibido por un jugador a lo largo del torneo por concepto de premios.
 
+
+-- 4. Mostrar la lista de entrenadores que han entrenado a un jugador a lo largo del torneo y fechas en las
+-- que lo hizo.
+
+
+-- 5. Mostrar el nombre del ganador de un torneo específico.
+
+
+-- 6. Mostrar todos los datos correspondientes a un torneo como: lugares de celebración, jugadores puestos
+-- ocupados fechas de juegos.
 
 
 --Queries
@@ -3038,8 +3053,6 @@ FROM    Game
     LEFT JOIN Player
             ON Scores.id_player = Player.id        
 ; 
-
-
 
 SELECT  Player.name AS First,
         Player.last_name AS Last, 
