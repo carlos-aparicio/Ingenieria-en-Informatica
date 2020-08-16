@@ -1554,6 +1554,7 @@ VALUES
     ('US Open', 2019, 2)
 ;
 
+-- Insert Data into Tournament_Cities Table
 INSERT INTO Tournament_Cities (id_tournament, id_city)
 VALUES 
     (1, 1),
@@ -2450,6 +2451,7 @@ VALUES
     (892, 4)
 ;
 
+-- Insert Data into Tournament_Players Table
 INSERT INTO Tournament_Players (id_player, id_tournament)
 VALUES 
     (1, 892),
@@ -2528,6 +2530,7 @@ VALUES
     (74, 892)
 ;
 
+-- Insert Data into Game Table
 INSERT INTO Game (Date, id_round, id_tournament)
 VALUES 
     ('2019-08-26', 7, 753),
@@ -2605,6 +2608,7 @@ VALUES
     ('2019-09-10', 1, 753)
 ;
 
+-- Insert Data into Scores Table
 INSERT INTO Scores (id_game, id_player, score)
 VALUES 
     (1 ,60 ,5 ),
@@ -2832,6 +2836,7 @@ VALUES
     (7, 74, '2000-01-01', '2019-09-30')
 ;
 
+-- Insert Data into Referee_Games Table 
 INSERT INTO Referee_Games (id_referee, id_game)
 VALUES
     (13, 1),
@@ -2909,8 +2914,30 @@ VALUES
     (12, 73)
 ;
 
--- Queries
 
+/* Activities:
+1. Mostrar el año de un torneo, composición y resultado de los partidos.
+2. Mostrar la lista de árbitros que participaron en el torneo.
+3. Mostrar el dinero total recibido por un jugador a lo largo del torneo por concepto de
+premios.
+4. Mostrar la lista de entrenadores que han entrenado a un jugador a lo largo del torneo y
+fechas en las que lo hizo.
+5. Mostrar el nombre del ganador de un torneo específico.
+6. Mostrar todos los datos correspondientes a un torneo como: lugares de celebración,
+jugadores puestos ocupados fechas de juegos.
+
+Nota: para que la actividad sea validad se debe mostrar la base de datos creada y las consultas
+correspondientes (recuerden consultas multi-tablas), todo debe tener las instrucciones
+correspondientes en un .sql con pantallazos de los resultados obtenidos.
+*/
+
+
+
+
+
+
+
+--Queries
 SELECT  Player.name AS First, 
         Player.last_name AS Last, 
         Country.name AS Country
