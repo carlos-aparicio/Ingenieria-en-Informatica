@@ -2934,19 +2934,62 @@ VALUES
 -- Activities:
 -- 1. Mostrar el año de un torneo, composición y resultado de los partidos.
 
-
+SELECT  Tournament.id AS ID,
+        CONCAT(Tournament.name, " " , Tournament.year)  AS Tournament,
+        Round.name AS Round,
+        Game.id AS Game,
+        GROUP_CONCAT(Scores.score SEPARATOR ' - ') AS Score
+FROM    Tournament
+        LEFT JOIN Category
+            ON Tournament.id_category = Category.id
+        INNER  JOIN Game
+            ON Tournament.id = Game.id_tournament
+        INNER JOIN Round
+            ON Game.id_round = Round.id
+        LEFT JOIN Scores
+            ON Game.id = Scores.id_game
+WHERE Tournament.id = 753
+GROUP BY Game ASC
+;
 -- 2. Mostrar la lista de árbitros que participaron en el torneo.
 
+SELECT  Tournament.id AS ID,
+        CONCAT(Tournament.name, " ", Tournament.year) AS Tournament,
+        Round.name AS Round,
+        Referee_Games. id_game AS Game,
+        CONCAT (Referee.name, " ", Referee.last_name) AS Referee
+FROM Referee_Games
+        INNER JOIN Referee
+            ON Referee_Games.id_referee = Referee.id
+        INNER JOIN Game
+            ON Referee_Games.id_game = Game.id
+        INNER  JOIN Tournament
+            ON Game.id_tournament = Tournament.id
+        INNER JOIN Round
+            ON Game.id_round = Round.id 
+WHERE Tournament.id = 753
+ORDER BY Game ASC
+; 
 
 -- 3. Mostrar el dinero total recibido por un jugador a lo largo del torneo por concepto de premios.
 
+SELECT * 
+FROM Players
+; 
 
 -- 4. Mostrar la lista de entrenadores que han entrenado a un jugador a lo largo del torneo y fechas en las
 -- que lo hizo.
 
+SELECT
+FROM
+LEFT JOIN
 
 -- 5. Mostrar el nombre del ganador de un torneo específico.
 
+SELECT
+FROM
+LEFT JOIN
+;
 
 -- 6. Mostrar todos los datos correspondientes a un torneo como: lugares de celebración, jugadores puestos
 -- ocupados fechas de juegos.
@@ -3019,22 +3062,20 @@ WHERE   last_name like "Karlovic"
 
 
 --Amount of Money earned by a Player
-SELECT  Player.name AS First,
-        Player.last_name AS Last,
+SELECT  Tournament.id AS Tournament,
+        Round.name AS Round,
+        Game.id AS Game,
+        CONCAT(Player.name, " ", last_name) AS Player,
         SUM(IF (STRCMP(Player.id, Game.winner) = 0, Round.prize_winner ,Round.prize_loser)) AS Prize       
-FROM    Scores
-    LEFT JOIN Game
-            ON Scores.id_game = Game.id
-    LEFT  JOIN Player 
+FROM Game
+    INNER JOIN Scores
+            ON Game.id = Scores.id_game
+    INNER JOIN Player 
             ON Scores.id_Player = Player.id
-    LEFT JOIN Round
+    INNER  JOIN Round
             ON Game.id_round = Round.id
-ORDER BY Score DESC 
-;
-
-UPDATE Game 
-SET winner = 47 
-WHERE id = 1
+    INNER JOIN Tournament
+            ON Game.id_tournament = Tournament.id
 ;
 
 SELECT  Game.Id AS Game,
@@ -3064,4 +3105,46 @@ FROM    Scores
             ON Scores.id_player = Player.id
     LEFT  JOIN Game 
             ON Scores.id_game = Game.id
+;
+
+
+SELECT  Tournament.id AS ID,
+        CONCAT(Tournament.name, " " , Tournament.year)  AS Tournament,
+        Round.name AS Round,
+        Game.id AS Game,
+        GROUP_CONCAT(Scores.score SEPARATOR ' - ') AS Score,
+        Game.winner AS Winner_Id,
+        CONCAT(Player.name, " ", Player.last_name) AS Winner_Name
+        
+FROM    Tournament
+        LEFT JOIN Category
+            ON Tournament.id_category = Category.id
+        INNER  JOIN Game
+            ON Tournament.id = Game.id_tournament
+        INNER JOIN Round
+            ON Game.id_round = Round.id
+        LEFT JOIN Scores
+            ON Game.id = Scores.id_game
+        INNER JOIN Player
+            ON Scores.id_player = Player.id
+WHERE Tournament.id = 753
+GROUP BY Game ASC
+;
+
+SELECT  Tournament.id AS Tournament,
+        Round.name AS Round,
+        Game.id AS Game,
+        Player.id AS Player_id,
+        CONCAT(Player.name, " ", last_name) AS Player,
+        SUM(prize_winner)    
+FROM Game
+    LEFT JOIN Scores
+            ON Game.id = Scores.id_game
+    INNER JOIN Player 
+            ON Scores.id_Player = Player.id
+    INNER  JOIN Round
+            ON Game.id_round = Round.id
+    INNER JOIN Tournament
+            ON Game.id_tournament = Tournament.id
+WHERE Player.id = 66
 ;
